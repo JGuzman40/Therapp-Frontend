@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Landing from "../src/componentes/Landing/Landing";
+import LoginForm from "../src/componentes/Login/LoginForm";
+import PrivateRoute from "./routes/PrivateRoute";
+import DashboardAdministrador from "../src/componentes/Administradores/DashboardAdmin";
+import DashboardFacilitador from "./componentes/Facilitadores/DashboardFacilitador";
+import DashboardParticipante from "../src/componentes/Participantes/DashboardParticipante";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <main>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route
+    path="/dashboard-administrador"
+    element={
+      <PrivateRoute allowedRoles={["administrador"]}>
+        <DashboardAdministrador />
+      </PrivateRoute>
+    }
+  />
+  <Route
+    path="/dashboard-facilitador"
+    element={
+      <PrivateRoute allowedRoles={["facilitador"]}>
+        <DashboardFacilitador />
+      </PrivateRoute>
+    }
+  />
+  <Route
+    path="/dashboard-participante"
+    element={
+      <PrivateRoute allowedRoles={["participante"]}>
+        <DashboardParticipante />
+      </PrivateRoute>
+    }
+  />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
