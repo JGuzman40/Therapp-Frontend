@@ -1,0 +1,22 @@
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.evento-card {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  color:brown;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.evento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+}

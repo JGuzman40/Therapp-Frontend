@@ -35,6 +35,8 @@ function LoginForm() {
 
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("usuarioId", user.id);
+
 
     if (user.role === "administrador") {
       navigate("/dashboard-administrador");
